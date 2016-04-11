@@ -1,0 +1,29 @@
+{
+  "name": "alaska-order",
+  "version": "0.1.0",
+  "description": "Alaska order service",
+  "main": "lib/alaska-order.js",
+  "scripts": {
+    "build": "babel ./src --out-dir ./lib",
+    "watch": "babel ./src --out-dir ./lib -w",
+    "prebuild": "rimraf lib",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maichong/alaska-order.git"
+  },
+  "author": {
+    "email": "liang@maichong.it",
+    "name": "liang",
+    "url": "https://github.com/liangxingchen"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maichong/alaska-order/issues"
+  },
+  "homepage": "https://github.com/maichong/alaska-order#readme",
+  "peerDependencies": {
+    "alaska": "*"
+  }
+}
