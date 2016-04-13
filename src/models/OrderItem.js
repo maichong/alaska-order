@@ -16,7 +16,7 @@ export default class OrderItem extends service.Model {
     title: {
       label: 'Title',
       type: String,
-      require: true
+      required: true
     },
     order: {
       label: 'Order',
