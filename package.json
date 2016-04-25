@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Alaska order service",
   "main": "lib/alaska-order.js",
+  "keywords": [
+    "alaska",
+    "alaska-service"
+  ],
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
     "watch": "babel ./src --out-dir ./lib -w",

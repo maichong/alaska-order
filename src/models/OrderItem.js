@@ -6,7 +6,7 @@
 
 export default class OrderItem extends service.Model {
   static label = 'Order Item';
-  static defaultColumns = 'title,order,createdAt';
+  static defaultColumns = 'title order createdAt';
   static defaultSort = '-sort';
   static nocreate = true;
   static disabled = true;

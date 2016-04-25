@@ -9,8 +9,9 @@ import OrderLog from './OrderLog';
 
 export default class Order extends service.Model {
   static label = 'Order';
-  static defaultColumns = 'pic,title,user,price,state,createdAt';
+  static defaultColumns = 'pic title user price state createdAt';
   static defaultSort = '-createdAt';
+  static searchFields = 'title';
   //static nocreate = true;
   static noremove = true;
 
@@ -61,6 +62,7 @@ export default class Order extends service.Model {
       label: 'State',
       type: 'select',
       number: true,
+      default: 200,
       options: service.config('status')
     },
     failure: {

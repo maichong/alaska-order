@@ -7,7 +7,7 @@
 export default class OrderLog extends service.Model {
 
   static label = 'Order Log';
-  static defaultColumns = 'title,order,createdAt';
+  static defaultColumns = 'title order createdAt';
   static defaultSort = '-createdAt';
   static disabled = true;
 
