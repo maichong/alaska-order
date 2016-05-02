@@ -9,11 +9,28 @@ import OrderLog from './OrderLog';
 
 export default class Order extends service.Model {
   static label = 'Order';
-  static defaultColumns = 'pic title user price state createdAt';
+  static defaultColumns = 'pic title user total state createdAt';
   static defaultSort = '-createdAt';
   static searchFields = 'title';
   //static nocreate = true;
   static noremove = true;
+
+  static populations = {
+    items: {
+      path: 'items'
+    }
+  };
+
+  static scopes = {
+    list: '* -items'
+  };
+
+  static api = {
+    list: 3,
+    count: 3,
+    show: 3,
+    create: 3
+  };
 
   static fields = {
     title: {
@@ -42,19 +59,33 @@ export default class Order extends service.Model {
       type: ['OrderItem'],
       noedit: true
     },
+    address: {
+      label: 'Address',
+      type: Object
+    },
     currency: {
       label: 'Currency',
       type: 'select',
       options: BALANCE.currencies,
       default: BALANCE.defaultCurrency.value
     },
-    price: {
-      label: 'Price',
+    shipping: {
+      //邮费,不包含在total中,由各个OrderItem.shipping相加
+      label: 'Shipping',
       type: Number,
       default: 0
     },
+    total: {
+      //由各个OrderItem.total相加而得,不包含邮费
+      label: 'Total Amount',
+      type: Number
+    },
+    pay: {
+      label: 'Pay Amount',
+      type: Number
+    },
     payed: {
-      label: 'Payed',
+      label: 'Payed Amount',
       type: Number,
       default: 0
     },
@@ -91,6 +122,17 @@ export default class Order extends service.Model {
    * @returns {*}
    */
   createLog(title) {
-    return new OrderLog({ title, order: this }).save();
+    let log = new OrderLog({ title, order: this });
+    log.save();
+    return log;
+  }
+
+  /**
+   * 判断某个GoodsItem能不能合并到此订单
+   * @param {OrderItem} item
+   * @returns {boolean}
+   */
+  canAppendItem(item) {
+    return true;
   }
 }

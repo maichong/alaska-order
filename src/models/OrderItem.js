@@ -4,15 +4,22 @@
  * @author Liang <liang@maichong.it>
  */
 
+const BALANCE = service.service('balance');
+
 export default class OrderItem extends service.Model {
   static label = 'Order Item';
-  static defaultColumns = 'title order createdAt';
+  static defaultColumns = 'title order goods price discount total quantity createdAt';
   static defaultSort = '-sort';
   static nocreate = true;
   static disabled = true;
   static noremove = true;
 
   static fields = {
+    pic: {
+      label: 'Main Picture',
+      type: 'image',
+      required: true
+    },
     title: {
       label: 'Title',
       type: String,
@@ -27,6 +34,38 @@ export default class OrderItem extends service.Model {
       label: 'Goods',
       ref: 'alaska-goods.Goods',
       optional: true
+    },
+    sku: {
+      label: 'Sku',
+      ref: 'alaska-goods.Sku',
+      optional: true
+    },
+    currency: {
+      label: 'Currency',
+      type: 'select',
+      options: BALANCE.currencies,
+      default: BALANCE.defaultCurrency.value
+    },
+    price: {
+      label: 'Price',
+      type: Number
+    },
+    discount: {
+      label: 'Discount',
+      type: Number
+    },
+    quantity: {
+      label: 'Quantity',
+      type: Number
+    },
+    shipping: {
+      label: 'Shipping',
+      type: Number
+    },
+    total: {
+      // total = (discount || price) * quantity
+      label: 'Total Amount',
+      type: Number
     },
     createdAt: {
       label: '添加时间',

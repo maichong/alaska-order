@@ -9,8 +9,8 @@ import alaska from 'alaska';
 export default class OrderService extends alaska.Service {
   constructor(options, alaska) {
     options = options || {};
-    options.dir = __dirname;
-    options.id = 'alaska-order';
+    options.dir = options.dir || __dirname;
+    options.id = options.id || 'alaska-order';
     super(options, alaska);
   }
 }

@@ -20,5 +20,10 @@ export default {
   Order_Done: '完成',
   Order_Refund: '退款中',
   Order_Failed: '失败',
-  Goods: '商品'
+  Goods: '商品',
+  'Can not create any order': '未能创建任何订单',
+  Shipping: '运费',
+  'Total Amount': '总金额',
+  'Pay Amount': '支付金额',
+  'Payed Amount': '已支付'
 };
