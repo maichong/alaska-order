@@ -40,6 +40,10 @@ export default class OrderItem extends service.Model {
       ref: 'alaska-goods.Sku',
       optional: true
     },
+    skuDesc: {
+      label: 'Sku Desc',
+      type: String
+    },
     currency: {
       label: 'Currency',
       type: 'select',

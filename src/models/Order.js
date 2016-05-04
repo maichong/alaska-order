@@ -22,7 +22,7 @@ export default class Order extends service.Model {
   };
 
   static scopes = {
-    list: '* -items'
+    list: '*'
   };
 
   static api = {
