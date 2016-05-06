@@ -12,6 +12,9 @@ export default {
   }, {
     id: 'alaska-balance',
     alias: 'balance'
+  }, {
+    id: 'alaska-settings',
+    alias: 'settings'
   }],
   status: [{
     label: 'Order_New',

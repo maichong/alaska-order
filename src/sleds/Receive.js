@@ -5,11 +5,18 @@
  */
 
 export default class Receive extends service.Sled {
-
-  validate(data) {
+  /**
+   * @param data
+   *        data.order  {Order}
+   */
+  async exec(data) {
+    let order = data.order;
+    if (order.state === 500) {
+      order.state = 600;
+    }
+    order.receiveTimeout = null;
+    await order.save();
+    order.createLog('Order received');
+    return order;
   }
-
-  exec(data) {
-  }
-
 }

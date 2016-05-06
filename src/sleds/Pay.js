@@ -8,10 +8,18 @@
  * 支付订单
  */
 export default class Pay extends service.Sled {
-
-  validate(data) {
-  }
-
-  exec(data) {
+  /**
+   * @param data
+   *        data.order  {Order}
+   */
+  async exec(data) {
+    let order = data.order;
+    if (order.state === 200) {
+      order.state = 300;
+    }
+    order.paymentTimeout = null;
+    await order.save();
+    order.createLog('Order payed');
+    return order;
   }
 }

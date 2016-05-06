@@ -4,13 +4,31 @@
  * @author Liang <liang@maichong.it>
  */
 
+import moment from 'moment';
+
+const SETTINGS = service.service('settings');
+
 /**
  * 用户申请退款
  */
 export default class Refund extends service.Sled {
-  validate(data) {
-  }
+  /**
+   * @param data
+   *        data.order  {Order}
+   */
+  async exec(data) {
+    let order = data.order;
+    if ([400, 500, 800].indexOf(order.state) < 0) service.error('Order state error');
+    order.state = 800;
 
-  exec(data) {
+    if (!order.refundTimeout) {
+      let refundTimeout = await SETTINGS.get('refundTimeout');
+      order.refundTimeout = moment().add(refundTimeout, 's').toDate();
+    }
+    order.refundReason = data.reason;
+    order.refundAmount = data.amount;
+    await order.save();
+    order.createLog('Apply refund');
+    return order;
   }
 }

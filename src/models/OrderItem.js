@@ -8,10 +8,10 @@ const BALANCE = service.service('balance');
 
 export default class OrderItem extends service.Model {
   static label = 'Order Item';
-  static defaultColumns = 'title order goods price discount total quantity createdAt';
+  static defaultColumns = 'title order goods skuDesc price discount total quantity createdAt';
   static defaultSort = '-sort';
   static nocreate = true;
-  static disabled = true;
+  static noedit = true;
   static noremove = true;
 
   static fields = {
@@ -36,12 +36,12 @@ export default class OrderItem extends service.Model {
       optional: true
     },
     sku: {
-      label: 'Sku',
+      label: 'SKU',
       ref: 'alaska-goods.Sku',
       optional: true
     },
     skuDesc: {
-      label: 'Sku Desc',
+      label: 'SKU Desc',
       type: String
     },
     currency: {

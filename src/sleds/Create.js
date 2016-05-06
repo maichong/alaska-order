@@ -6,6 +6,10 @@
 
 import Order from '../models/Order';
 
+import moment from 'moment';
+
+const SETTINGS = service.service('settings');
+
 /**
  * 下单Sled
  */
@@ -13,9 +17,9 @@ export default class Create extends service.Sled {
 
   /**
    * @param data 订单数据对象
-   *        data.pre    [boolean]
-   *        data.user   [User] 用户
-   *        data.orders [Order] 前置钩子生成的订单
+   *        data.pre    {boolean}
+   *        data.user   {User} 用户
+   *        data.orders {[Order]} 前置钩子生成的订单
    */
   async exec(data) {
     let orders = data.orders;
@@ -24,12 +28,16 @@ export default class Create extends service.Sled {
       service.error('Can not create any order');
     }
     if (!data.pre) {
+      let paymentTimeout = await SETTINGS.get('paymentTimeout');
       for (let order of orders) {
         for (let item of order.items) {
           await item.save();
         }
+        if (paymentTimeout && order.state === 200 && !order.paymentTimeout) {
+          order.paymentTimeout = moment().add(paymentTimeout, 's').toDate();
+        }
         await order.save();
-        order.createLog('Created');
+        order.createLog('Order created');
       }
     }
     return data;

@@ -8,10 +8,20 @@
  * 退款审核拒绝
  */
 export default class RefundReject extends service.Sled {
-
-  validate(data) {
-  }
-
-  exec(data) {
+  /**
+   * @param data
+   *        data.order  {Order}
+   */
+  async exec(data) {
+    let order = data.order;
+    if (order.shipped) {
+      order.state = 500;
+    } else {
+      order.state = 400;
+    }
+    order.refundTimeout = null;
+    await order.save();
+    order.createLog('Refund rejected');
+    return order;
   }
 }

@@ -25,5 +25,6 @@ export default {
   Shipping: 'Shipping',
   'Total Amount': 'Total Amount',
   'Pay Amount': 'Pay Amount',
-  'Payed Amount': 'Payed Amount'
+  'Payed Amount': 'Payed Amount',
+  'Refund Amount': 'Refund Amount'
 };

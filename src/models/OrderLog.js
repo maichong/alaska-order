@@ -9,13 +9,16 @@ export default class OrderLog extends service.Model {
   static label = 'Order Log';
   static defaultColumns = 'title order createdAt';
   static defaultSort = '-createdAt';
-  static disabled = true;
+  static nocreate = true;
+  static noedit = true;
+  static noremove = true;
 
   static fields = {
     title: {
       label: 'Title',
       type: String,
-      required: true
+      required: true,
+      translate: true
     },
     order: {
       label: 'Order',

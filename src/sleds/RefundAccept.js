@@ -8,10 +8,18 @@
  * 同意退款请求
  */
 export default class RefundAccept extends service.Sled {
-
-  validate(data) {
-  }
-
-  exec(data) {
+  /**
+   * @param data
+   *        data.order  {Order}
+   */
+  async exec(data) {
+    let order = data.order;
+    order.state = 900;
+    order.refundTimeout = null;
+    let currency = order.currency;
+    let payed = order.payed;
+    await order.save();
+    order.createLog('Order refunded');
+    return order;
   }
 }

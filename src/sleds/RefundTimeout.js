@@ -8,10 +8,16 @@
  * 退款申请超时,退款应当自动通过
  */
 export default class RefundTimeout extends service.Sled {
-
-  validate(data) {
-  }
-
-  exec(data) {
+  /**
+   * @param data
+   *        data.order  {Order}
+   */
+  async exec(data) {
+    let order = data.order;
+    order.state = 900;
+    order.refundTimeout = null;
+    await order.save();
+    order.createLog('Order refunded');
+    return order;
   }
 }

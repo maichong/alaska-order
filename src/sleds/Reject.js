@@ -1,22 +1,24 @@
 /**
  * @copyright Maichong Software Ltd. 2016 http://maichong.it
- * @date 2016-04-09
+ * @date 2016-05-06
  * @author Liang <liang@maichong.it>
  */
 
-/**
- * 买家取消订单
- */
-export default class Cancel extends service.Sled {
+export default class Reject extends service.Sled {
   /**
    * @param data
    *        data.order  {Order}
    */
   async exec(data) {
     let order = data.order;
-    order.state = 900;
+    if (order.state === 300) {
+      order.state = 900;
+    }
+    if (!order.failure) {
+      order.failure = 'Rejected';
+    }
     await order.save();
-    order.createLog('Canceled');
+    order.createLog('Order rejected');
     return order;
   }
 }
