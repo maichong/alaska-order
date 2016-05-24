@@ -8,7 +8,7 @@ const ORDER = service.service('alaska-order');
 const Order = service.model('alaska-order.Order');
 
 export async function pre() {
-  let payment = data.payment;
+  let payment = this.data.payment;
   if (!payment.orders || !payment.orders.length) return;
   for (let order of payment.orders) {
     if (!order.save) {
@@ -25,4 +25,5 @@ export async function pre() {
     }
     await ORDER.run('Pay', { order });
   }
+  this.data.done = true;
 }
