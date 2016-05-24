@@ -6,6 +6,11 @@
 
 export default {
   Order: '订单',
+  Picture: '图片',
+  Address: '地址',
+  Price: '价格',
+  Discount: '打折',
+  Quantity: '数量',
   'Order Item': '订单商品',
   'Order Items': '订单商品',
   'Order Log': '订单日志',

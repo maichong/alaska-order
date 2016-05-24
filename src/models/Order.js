@@ -19,6 +19,10 @@ export default class Order extends service.Model {
     items: {
       ref: 'OrderItem',
       path: 'order'
+    },
+    logs: {
+      ref: 'OrderLog',
+      path: 'order'
     }
   };
 
