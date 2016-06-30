@@ -17,7 +17,7 @@ export async function pre() {
 
   let amount = 0;
   let payment = new Payment({
-    user: user._id,
+    user: user,
     type,
     orders: []
   });

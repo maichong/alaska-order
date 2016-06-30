@@ -50,5 +50,7 @@ export default {
   'Apply refund': '申请退款',
   'Order refunded': '订单退款',
   'Refund rejected': '拒绝退款',
-  'Order shipped': '已发货'
+  'Order shipped': '已发货',
+  Confirm: '确认',
+  Ship: '发货',
 };

@@ -43,6 +43,26 @@ export default class Order extends service.Model {
     create: 3
   };
 
+  static actions = {
+    confirm: {
+      title: 'Confirm',
+      style: 'success',
+      sled: 'Confirm',
+      depends: {
+        state: 300
+      }
+    },
+    ship: {
+      title: 'Ship',
+      style: 'success',
+      sled: 'Ship',
+      depends: {
+        state: 400
+      }
+    },
+
+  };
+
   static fields = {
     title: {
       label: 'Title',
@@ -138,7 +158,7 @@ export default class Order extends service.Model {
     shipped: {
       label: 'Shipped',
       type: Boolean,
-      static: true
+      hidden: true
     },
     state: {
       label: 'State',
