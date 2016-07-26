@@ -4,7 +4,9 @@
  * @author Liang <liang@maichong.it>
  */
 
-export default class Reject extends service.Sled {
+import alaska from 'alaska';
+
+export default class Reject extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -19,6 +21,5 @@ export default class Reject extends service.Sled {
     }
     await order.save();
     order.createLog('Order rejected');
-    return order;
   }
 }

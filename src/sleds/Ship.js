@@ -5,13 +5,13 @@
  */
 
 import moment from 'moment';
-
-const SETTINGS = service.service('settings');
+import alaska from 'alaska';
+import SETTINGS from 'alaska-settings';
 
 /**
  * 发货操作
  */
-export default class Ship extends service.Sled {
+export default class Ship extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -28,6 +28,5 @@ export default class Ship extends service.Sled {
     order.shipped = true;
     await order.save();
     order.createLog('Order shipped');
-    return order;
   }
 }

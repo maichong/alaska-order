@@ -4,9 +4,13 @@
  * @author Liang <liang@maichong.it>
  */
 
-export default class OrderLog extends service.Model {
+import alaska from 'alaska';
+import service from '../';
+
+export default class OrderLog extends alaska.Model {
 
   static label = 'Order Log';
+  static icon = 'hourglass-2';
   static defaultColumns = 'title order createdAt';
   static defaultSort = '-createdAt';
   static nocreate = true;

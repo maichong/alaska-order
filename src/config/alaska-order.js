@@ -6,16 +6,11 @@
 
 export default {
   prefix: '/order',
-  services: [{
-    id: 'alaska-user',
-    alias: 'user'
-  }, {
-    id: 'alaska-balance',
-    alias: 'balance'
-  }, {
-    id: 'alaska-settings',
-    alias: 'settings'
-  }],
+  services: {
+    'alaska-user': {},
+    'alaska-balance': {},
+    'alaska-settings': {},
+  },
   status: [{
     label: 'Order_New',
     value: 200

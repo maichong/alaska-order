@@ -5,13 +5,14 @@
  */
 
 import moment from 'moment';
-
-const SETTINGS = service.service('settings');
+import alaska from 'alaska';
+import service from '../';
+import SETTINGS from 'alaska-settings';
 
 /**
  * 用户申请退款
  */
-export default class Refund extends service.Sled {
+export default class Refund extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -29,6 +30,5 @@ export default class Refund extends service.Sled {
     order.refundAmount = data.amount;
     await order.save();
     order.createLog('Apply refund');
-    return order;
   }
 }

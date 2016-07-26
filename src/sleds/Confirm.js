@@ -4,10 +4,12 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+
 /**
  * 审核订单
  */
-export default class Confirm extends service.Sled {
+export default class Confirm extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -19,6 +21,5 @@ export default class Confirm extends service.Sled {
     }
     await order.save();
     order.createLog('Order confirmed');
-    return order;
   }
 }

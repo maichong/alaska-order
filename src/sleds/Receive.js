@@ -4,7 +4,9 @@
  * @author Liang <liang@maichong.it>
  */
 
-export default class Receive extends service.Sled {
+import alaska from 'alaska';
+
+export default class Receive extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -17,6 +19,5 @@ export default class Receive extends service.Sled {
     order.receiveTimeout = null;
     await order.save();
     order.createLog('Order received');
-    return order;
   }
 }

@@ -4,10 +4,12 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+
 /**
  * 退款申请超时,退款应当自动通过
  */
-export default class RefundTimeout extends service.Sled {
+export default class RefundTimeout extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -18,6 +20,5 @@ export default class RefundTimeout extends service.Sled {
     order.refundTimeout = null;
     await order.save();
     order.createLog('Order refunded');
-    return order;
   }
 }

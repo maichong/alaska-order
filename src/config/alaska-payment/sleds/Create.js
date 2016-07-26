@@ -4,8 +4,8 @@
  * @author Liang <liang@maichong.it>
  */
 
-const Payment = service.model('Payment');
-const Order = service.model('alaska-order.Order');
+import Payment from 'alaska-payment';
+import Order from 'alaska-order/models/Order';
 
 export async function pre() {
   let data = this.data;

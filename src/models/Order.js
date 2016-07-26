@@ -4,11 +4,14 @@
  * @author Liang <liang@maichong.it>
  */
 
-const BALANCE = service.service('balance');
+import alaska from 'alaska';
+import service from '../';
+import BALANCE from 'alaska-balance';
 import OrderLog from './OrderLog';
 
-export default class Order extends service.Model {
+export default class Order extends alaska.Model {
   static label = 'Order';
+  static icon = 'file-text-o';
   static defaultColumns = 'pic title user total state createdAt';
   static defaultSort = '-createdAt';
   static searchFields = 'title';
@@ -73,7 +76,7 @@ export default class Order extends service.Model {
     user: {
       label: 'User',
       type: 'relationship',
-      ref: 'user.User',
+      ref: 'alaska-user.User',
       static: true,
       index: true
     },

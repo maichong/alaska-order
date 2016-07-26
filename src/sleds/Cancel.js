@@ -4,10 +4,12 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+
 /**
  * 买家取消订单
  */
-export default class Cancel extends service.Sled {
+export default class Cancel extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -17,6 +19,5 @@ export default class Cancel extends service.Sled {
     order.state = 900;
     await order.save();
     order.createLog('Canceled');
-    return order;
   }
 }

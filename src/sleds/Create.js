@@ -4,16 +4,16 @@
  * @author Liang <liang@maichong.it>
  */
 
-import Order from '../models/Order';
-
 import moment from 'moment';
-
-const SETTINGS = service.service('settings');
+import alaska from 'alaska';
+import service from '../';
+import SETTINGS from 'alaska-settings';
+import Order from '../models/Order';
 
 /**
  * 下单Sled
  */
-export default class Create extends service.Sled {
+export default class Create extends alaska.Sled {
 
   /**
    * @param data 订单数据对象

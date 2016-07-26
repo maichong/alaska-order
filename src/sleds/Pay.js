@@ -4,10 +4,12 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+
 /**
  * 支付订单
  */
-export default class Pay extends service.Sled {
+export default class Pay extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -20,6 +22,5 @@ export default class Pay extends service.Sled {
     order.paymentTimeout = null;
     await order.save();
     order.createLog('Order payed');
-    return order;
   }
 }

@@ -4,10 +4,12 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+
 /**
  * 退款审核拒绝
  */
-export default class RefundReject extends service.Sled {
+export default class RefundReject extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -22,6 +24,5 @@ export default class RefundReject extends service.Sled {
     order.refundTimeout = null;
     await order.save();
     order.createLog('Refund rejected');
-    return order;
   }
 }

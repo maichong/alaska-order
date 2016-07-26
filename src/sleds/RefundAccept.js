@@ -4,10 +4,12 @@
  * @author Liang <liang@maichong.it>
  */
 
+import alaska from 'alaska';
+
 /**
  * 同意退款请求
  */
-export default class RefundAccept extends service.Sled {
+export default class RefundAccept extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
@@ -18,8 +20,8 @@ export default class RefundAccept extends service.Sled {
     order.refundTimeout = null;
     let currency = order.currency;
     let payed = order.payed;
+    //TODO 退款
     await order.save();
     order.createLog('Order refunded');
-    return order;
   }
 }

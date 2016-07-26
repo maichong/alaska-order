@@ -4,10 +4,12 @@
  * @author Liang <liang@maichong.it>
  */
 
-const BALANCE = service.service('balance');
+import alaska from 'alaska';
+import BALANCE from 'alaska-balance';
 
-export default class OrderItem extends service.Model {
+export default class OrderItem extends alaska.Model {
   static label = 'Order Item';
+  static icon = 'list-ol';
   static defaultColumns = 'title order goods skuDesc price discount total quantity createdAt';
   static defaultSort = '-sort';
   static nocreate = true;

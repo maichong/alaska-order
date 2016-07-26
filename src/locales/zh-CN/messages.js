@@ -53,4 +53,5 @@ export default {
   'Order shipped': '已发货',
   Confirm: '确认',
   Ship: '发货',
+  'Refund Reason': '退款原因'
 };
