@@ -4,6 +4,7 @@
  * @author Liang <liang@maichong.it>
  */
 
+import service from '../';
 import Order from '../models/Order';
 
 /**
