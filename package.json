@@ -1,6 +1,6 @@
 {
   "name": "alaska-order",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Alaska order service",
   "main": "index.js",
   "keywords": [

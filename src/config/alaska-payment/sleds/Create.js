@@ -4,7 +4,8 @@
  * @author Liang <liang@maichong.it>
  */
 
-import Payment from 'alaska-payment';
+import service from 'alaska-payment';
+import Payment from 'alaska-payment/models/Payment';
 import Order from 'alaska-order/models/Order';
 
 export async function pre() {
@@ -17,7 +18,7 @@ export async function pre() {
 
   let amount = 0;
   let payment = new Payment({
-    user: user,
+    user,
     type,
     orders: []
   });
