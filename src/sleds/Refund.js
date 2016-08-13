@@ -16,6 +16,8 @@ export default class Refund extends alaska.Sled {
   /**
    * @param data
    *        data.order  {Order}
+   *        data.reason string
+   *        data.amount number
    */
   async exec(data) {
     let order = data.order;

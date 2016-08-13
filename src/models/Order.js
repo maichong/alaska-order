@@ -18,14 +18,25 @@ export default class Order extends alaska.Model {
   static nocreate = true;
   static noremove = true;
 
+  static defaultFilters = ctx => {
+    let field = ctx.service.id === 'alaska-admin' ? 'adminDeleted' : 'userDeleted';
+    return {
+      [field]: {
+        $ne: true
+      }
+    };
+  };
+
   static relationships = {
     items: {
       ref: 'OrderItem',
-      path: 'order'
+      path: 'order',
+      private: true
     },
     logs: {
       ref: 'OrderLog',
-      path: 'order'
+      path: 'order',
+      private: true
     }
   };
 
@@ -63,51 +74,50 @@ export default class Order extends alaska.Model {
         state: 400
       }
     },
-
+    delete: {
+      title: 'Delete',
+      style: 'danger',
+      confirm: 'Do you confirm the order?',
+      sled: 'Delete',
+      post: 'js:history.back()'
+    }
   };
 
   static fields = {
     title: {
       label: 'Title',
       type: String,
-      static: true,
       required: true
     },
     user: {
       label: 'User',
       type: 'relationship',
       ref: 'alaska-user.User',
-      static: true,
       index: true
     },
     type: {
       label: 'Type',
       type: 'select',
-      static: true,
       options: []
     },
     pic: {
       label: 'Picture',
-      static: true,
       type: 'image'
     },
     items: {
       label: 'Order Items',
-      static: true,
       type: ['OrderItem'],
       noedit: true
     },
     address: {
       label: 'Address',
-      static: true,
       type: Object
     },
     currency: {
       label: 'Currency',
       type: 'select',
       options: BALANCE.currencies,
-      default: BALANCE.defaultCurrency.value,
-      static: true
+      default: BALANCE.defaultCurrency.value
     },
     shipping: {
       //邮费,不包含在total中,由各个OrderItem.shipping相加
@@ -122,19 +132,16 @@ export default class Order extends alaska.Model {
     },
     pay: {
       label: 'Pay Amount',
-      type: Number,
-      static: true
+      type: Number
     },
     payed: {
       label: 'Payed Amount',
       type: Number,
-      default: 0,
-      static: true
+      default: 0
     },
     payment: {
       label: 'Payment',
       type: 'select',
-      static: true,
       options: [{
         label: 'Balance',
         value: 'balance'
@@ -143,19 +150,16 @@ export default class Order extends alaska.Model {
     refund: {
       label: 'Refunded Amount',
       type: Number,
-      static: true,
       depends: 'refund'
     },
     refundReason: {
       label: 'Refund Reason',
       type: String,
-      static: true,
       depends: 'refundReason'
     },
     refundAmount: {
       label: 'Refund Amount',
       type: Number,
-      static: true,
       depends: 'refundAmount'
     },
     shipped: {
@@ -169,37 +173,43 @@ export default class Order extends alaska.Model {
       number: true,
       index: true,
       default: 200,
-      options: service.config('status'),
-      static: true
+      options: service.config('status')
     },
     failure: {
       label: 'Failure Reason',
       type: String,
-      depends: 'failure',
-      static: true
+      depends: 'failure'
     },
     createdAt: {
       label: 'Created At',
-      type: Date,
-      static: true
+      type: Date
     },
     paymentTimeout: {
       label: 'Payment Timeout',
       type: Date,
-      static: true,
       depends: 'paymentTimeout'
     },
     receiveTimeout: {
       label: 'Receive Timeout',
       type: Date,
-      static: true,
       depends: 'receiveTimeout'
     },
     refundTimeout: {
       label: 'Refund Timeout',
       type: Date,
-      static: true,
       depends: 'refundTimeout'
+    },
+    userDeleted: {
+      label: 'User Deleted',
+      type: Boolean,
+      private: true,
+      hidden: true
+    },
+    adminDeleted: {
+      label: 'Admin Deleted',
+      type: Boolean,
+      private: true,
+      hidden: true
     }
   };
 

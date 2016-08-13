@@ -53,5 +53,6 @@ export default {
   'Order shipped': '已发货',
   Confirm: '确认',
   Ship: '发货',
-  'Refund Reason': '退款原因'
+  'Refund Reason': '退款原因',
+  'Do you confirm the order?': '确定要删除订单吗?'
 };

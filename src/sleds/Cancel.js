@@ -17,6 +17,7 @@ export default class Cancel extends alaska.Sled {
   async exec(data) {
     let order = data.order;
     order.state = 900;
+    order.failure = 'Canceled';
     await order.save();
     order.createLog('Canceled');
   }
