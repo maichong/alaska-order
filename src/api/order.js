@@ -73,16 +73,19 @@ export async function refund(ctx) {
   let body = ctx.state.body || ctx.request.body;
   let orderId = body.order || ctx.request.body.order;
   let reason = body.reason || ctx.request.body.reason;
-  let amount = body.reason || ctx.request.body.amount;
+  let amount = body.amount || ctx.request.body.amount;
   if ((!orderId && !order) || ctx.method !== 'POST') service.error(400);
   if (!ctx.user) service.error(403);
   if (!reason) service.error('Invalid refund reason');
-  if (!amount || amount > order.payed) service.error('Invalid refund amount');
   if (!order) {
     order = await Order.findById(orderId).where('user', ctx.user._id);
     if (!order) service.error('Order not found');
     if (order.state !== 400 && order.state !== 500) service.error('Order state error');
   }
+  if (!amount) {
+    amount = order.payed;
+  }
+  if (amount > order.payed) service.error('Invalid refund amount');
   await service.run('Refund', { ctx, order, reason, amount });
   ctx.body = order.data();
 }
@@ -207,6 +210,7 @@ exports.cancel = async function (ctx) {
   let body = ctx.state.body || ctx.request.body;
   let orderId = body.order || ctx.request.body.order;
   if ((!orderId && !order) || ctx.method !== 'POST') service.error(400);
+  if (!ctx.user) service.error(403);
   if (!order) {
     order = await Order.findById(orderId).where('user', ctx.user._id);
   }

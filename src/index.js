@@ -7,11 +7,11 @@
 import alaska from 'alaska';
 
 class OrderService extends alaska.Service {
-  constructor(options, alaska) {
+  constructor(options) {
     options = options || {};
     options.dir = options.dir || __dirname;
     options.id = options.id || 'alaska-order';
-    super(options, alaska);
+    super(options);
   }
 
   preLoadConfig() {
